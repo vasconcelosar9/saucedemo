@@ -22,36 +22,28 @@ Fechar navegador
 Verificar URL
     Location Should Contain    /inventory.html
 
-Preencher usuário válido
+Preencher usuário
+    [Arguments]    ${USUARIO}
     Wait Until Element Is Visible    ${CAMPO_USUARIO}    5s
-    Input Text    ${CAMPO_USUARIO}    standard_user
+    Input Text    ${CAMPO_USUARIO}    ${USUARIO}
 
-Preencher usuário inválido
-    Wait Until Element Is Visible    ${CAMPO_USUARIO}    5s
-    Input Text    ${CAMPO_USUARIO}    usuario_errado
-
-Preencher usuário bloqueado
-    Wait Until Element Is Visible    ${CAMPO_USUARIO}
-    Input Text    ${CAMPO_USUARIO}    locked_out_user
-
-Preencher senha válida
+Preencher senha
+    [Arguments]    ${SENHA}
     Wait Until Element Is Visible    ${CAMPO_SENHA}    5s
-    Input Text    ${CAMPO_SENHA}    secret_sauce
-
-Preencher senha inválida
-    Wait Until Element Is Visible    ${CAMPO_SENHA}    5s
-    Input Text    ${CAMPO_SENHA}    senha_errada
+    Input Text    ${CAMPO_SENHA}    ${SENHA}
 
 Submeter login
     Wait Until Element Is Visible    ${BOTAO_LOGIN}    5s
     Click Button    ${BOTAO_LOGIN}
 
-Verificar mensagem de erro "${MENSAGEM}"
-    Page Should Contain    ${MENSAGEM}
+Verificar mensagem
+    [Arguments]    ${MENSAGEM}
+    Wait Until Page Contains    ${MENSAGEM}    5s
+    # Page Should Contain    ${MENSAGEM}
 
 Adicionar um produto da lista ao carrinho
     Wait Until Element Is Visible    ${BOTAO_ADD_TO_CART_PRODUCTS_LIST}    5s
     Click Button    ${BOTAO_ADD_TO_CART_PRODUCTS_LIST}
 
-Verificar que o produto foi adicionado
+Verificar badge de produto no carrinho
     Wait Until Element Is Visible    ${BADGE_CARRINHO_COM_VALOR}    5s
