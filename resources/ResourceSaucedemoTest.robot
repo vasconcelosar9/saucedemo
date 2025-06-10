@@ -2,11 +2,13 @@
 Library    SeleniumLibrary
 
 *** Variables ***
-${BROWSER}                   chrome
-${URL}                       https://www.saucedemo.com
-${CAMPO_USUARIO}             id=user-name
-${CAMPO_SENHA}               id=password
-${BOTAO_LOGIN}               id=login-button
+${BROWSER}                           chrome
+${URL}                               https://www.saucedemo.com
+${CAMPO_USUARIO}                     id=user-name
+${CAMPO_SENHA}                       id=password
+${BOTAO_LOGIN}                       id=login-button
+${BOTAO_ADD_TO_CART_PRODUCTS_LIST}   id=add-to-cart-sauce-labs-backpack
+${BADGE_CARRINHO_COM_VALOR}          //span[contains(@class,'badge')]
 
 *** Keywords ***
 Acessar página
@@ -46,3 +48,10 @@ Submeter login
 
 Verificar mensagem de erro "${MENSAGEM}"
     Page Should Contain    ${MENSAGEM}
+
+Adicionar um produto da lista ao carrinho
+    Wait Until Element Is Visible    ${BOTAO_ADD_TO_CART_PRODUCTS_LIST}    5s
+    Click Button    ${BOTAO_ADD_TO_CART_PRODUCTS_LIST}
+
+Verificar que o produto foi adicionado
+    Wait Until Element Is Visible    ${BADGE_CARRINHO_COM_VALOR}    5s
