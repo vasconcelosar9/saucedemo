@@ -1,5 +1,5 @@
 *** Settings ***
-Resource         ../resources/ResourceSaucedemoTest.resource
+Resource         ../resources/base.resource
 Test Setup       Acessar página
 Test Teardown    Fechar navegador
 
@@ -31,7 +31,7 @@ Caso de teste #03: Login com senha inválida
     Submeter login
     Verificar mensagem    Epic sadface: Username and password do not match any user in this service
 
-Caso de teste #4: Login com usuário e senha inválidos
+Caso de teste #04: Login com usuário e senha inválidos
     [Documentation]    É esperado que o usuário não consiga logar e que seja exibida uma mensagem de erro
     ...                sobre o usuário ou senha estarem errados
     [Tags]             login_falha
