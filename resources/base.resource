@@ -17,6 +17,10 @@ ${FILTRO_AZ}                               xpath=//option[@value='az']
 ${FILTRO_ZA}                               xpath=//option[@value='za']
 ${FILTRO_LOHI}                             xpath=//option[@value='lohi']
 ${FILTRO_HILO}                             xpath=//option[@value='hilo']
+${BOTAO_CARRINHO}                          css=a.shopping_cart_link
+${BOTAO_REMOVE_FROM_CART_PAGE}             xpath=//button[contains(.,'Remove')]
+${ITEM_NAME}                               css=div.inventory_item_name
+${BOTAO_CONTINUE_SHOPPING}                 id=continue-shopping
 
 *** Keywords ***
 Acessar página
@@ -145,3 +149,17 @@ Verificar ordem dos produtos por preço crescente
 Verificar ordem dos produtos por preço decrescente
     ${lista_hilo}    Evaluate    sorted(${lista_precos}, reverse=True)
     Should Be Equal    ${lista_precos}    ${lista_hilo}
+
+Acessar o carrinho
+    Wait Until Element Is Visible    ${BOTAO_CARRINHO}    5s
+    Click Element    ${BOTAO_CARRINHO}
+    Page Should Contain    Your Cart
+
+Remover item do carrinho através da página do carrinho
+    Wait Until Element Is Visible    ${BOTAO_REMOVE_FROM_CART_PAGE}
+    Click Button    ${BOTAO_REMOVE_FROM_CART_PAGE}
+    Element Should Not Be Visible    ${ITEM_NAME}
+
+Continuar comprando
+    Click Button    ${BOTAO_CONTINUE_SHOPPING}
+    Page Should Contain    Products
