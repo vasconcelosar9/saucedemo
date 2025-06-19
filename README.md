@@ -67,14 +67,20 @@ O arquivo base.resource contém as configurações principais:
 
 ## ▶️ Executando os Testes
 - Execute todos os testes:
-- robot tests/
+```bash
+robot tests/
+```
 
 ### Executar testes específicos:
 #### Testes de login
-- robot tests/login_tests.robot
+```bash
+robot tests/login_tests.robot
+```
 
 #### Testes com tag específica
-- robot --include login_sucesso tests/
+```bash
+robot --include login_sucesso tests/
+```
 
 ## 🔍 Relatórios
 Após a execução, os relatórios estarão disponíveis em:
