@@ -2,6 +2,7 @@
 Library    SeleniumLibrary
 Library    Collections
 Library    String
+Library    FakerLibrary    locale=pt_BR
 
 *** Variables ***
 ${BROWSER}                                 chrome
@@ -21,12 +22,19 @@ ${BOTAO_CARRINHO}                          css=a.shopping_cart_link
 ${BOTAO_REMOVE_FROM_CART_PAGE}             xpath=//button[contains(.,'Remove')]
 ${ITEM_NAME}                               css=div.inventory_item_name
 ${BOTAO_CONTINUE_SHOPPING}                 id=continue-shopping
+${BOTAO_CHECKOUT}                          id=checkout
+${CAMPO_FIRST_NAME}                        id=first-name
+${CAMPO_LAST_NAME}                         id=last-name
+${CAMPO_ZIP_CODE}                          id=postal-code
+${BOTAO_CONTINUE_CHECKOUT}                 id=continue
+${BOTAO_FINISH_CHECKOUT}                   id=finish
+${BOTAO_CANCEL_CHECKOUT}                   id=cancel
 
 *** Keywords ***
 Acessar página
     ${chrome_options}    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
     ${prefs}    Evaluate    {'profile.password_manager_leak_detection': False}
-    Call Method    ${chrome_options}    add_experimental_option    
+    Call Method    ${chrome_options}    add_experimental_option
     ...    prefs    ${prefs}
     Open Browser    ${URL}    ${BROWSER}    options=${chrome_options}
     Maximize Browser Window
@@ -163,3 +171,52 @@ Remover item do carrinho através da página do carrinho
 Continuar comprando
     Click Button    ${BOTAO_CONTINUE_SHOPPING}
     Page Should Contain    Products
+
+Acessar o checkout
+    Click Button    ${BOTAO_CHECKOUT}
+    Page Should Contain    Checkout: Your Information
+
+Remover todos os itens através da página do carrinho
+    Wait Until Element Is Visible    css=.cart_item    5s
+    ${elementos_produtos}    Get WebElements    xpath=//button[contains(@name,'remove')]
+    FOR    ${produto}    IN    @{elementos_produtos}
+        Wait Until Element Is Visible    ${produto}    5s
+        Scroll Element Into View    ${produto}
+        ${data_test}   Get Element Attribute    ${produto}    data-test
+        Click Element    xpath=//button[contains(@data-test,'${data_test}')]
+    END
+    Element Should Not Be Visible    css=.cart_item
+
+Preencher First Name
+    Wait Until Element Is Visible    ${CAMPO_FIRST_NAME}
+    ${first_name}    First Name
+    Input Text    ${CAMPO_FIRST_NAME}    ${first_name}
+
+Preencher Last Name
+    Wait Until Element Is Visible    ${CAMPO_LAST_NAME}
+    ${last_name}    Last Name
+    Input Text    ${CAMPO_LAST_NAME}    ${last_name}
+
+Preencher Zip/Postal Code
+    Wait Until Element Is Visible    ${CAMPO_ZIP_CODE}
+    ${valor_aleatorio}    Postcode
+    Input Text    ${CAMPO_ZIP_CODE}    ${valor_aleatorio}
+
+Continuar
+    Click Button    ${BOTAO_CONTINUE_CHECKOUT}
+
+Cancelar checkout na página de informações
+    Page Should Contain    Checkout: Your Information
+    Click Button    ${BOTAO_CANCEL_CHECKOUT}
+    Page Should Contain    Your Cart
+
+Cancelar checkout na página de visão geral
+    Page Should Contain    Checkout: Overview
+    Click Button    ${BOTAO_CANCEL_CHECKOUT}
+    Page Should Contain    Products
+
+Finalizar Checkout
+    Page Should Contain    Checkout: Overview
+    Wait Until Element Is Visible    ${BOTAO_FINISH_CHECKOUT}    5s
+    Click Button    ${BOTAO_FINISH_CHECKOUT}
+    Page Should Contain    Checkout: Complete!
