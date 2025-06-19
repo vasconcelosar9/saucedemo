@@ -8,19 +8,6 @@ Este projeto implementa testes automatizados para o site [SauceDemo](https://www
 - **FakerLibrary** (Geração de dados fictícios)
 - **Python** (Linguagem base)
 
-## 📂 Estrutura do Projeto
-
-saucedemo/
-├── resources/
-│ └── base.resource # Keywords e variáveis compartilhadas
-├── tests/
-│ ├── login_tests.robot # Testes de autenticação
-│ ├── products_list_tests.robot # Testes da página de produtos
-│ ├── cart_tests.robot # Testes do carrinho
-│ └── checkout_tests.robot # Testes de checkout
-├── .gitignore # Arquivos ignorados pelo Git
-└── README.md # Este arquivo
-
 ## ⚙️ Funcionalidades Testadas
 
 ### 🔐 Testes de Login
@@ -69,32 +56,33 @@ python -m venv .venv
 
 # Instalar dependências
 pip install -r requirements.txt
+```
 
-⚙️ Configuração
+## ⚙️ Configuração
 O arquivo base.resource contém as configurações principais:
 - URL do site
 - Seletores de elementos
 - Configurações do navegador
 - Keywords compartilhadas
 
-▶️ Executando os Testes
+## ▶️ Executando os Testes
 - Execute todos os testes:
 - robot tests/
 
-Executar testes específicos:
-# Testes de login
+## Executar testes específicos:
+### Testes de login
 - robot tests/login_tests.robot
 
-# Testes com tag específica
+### Testes com tag específica
 - robot --include login_sucesso tests/
 
-🔍 Relatórios
+## 🔍 Relatórios
 Após a execução, os relatórios estarão disponíveis em:
 - log.html: Log detalhado da execução
 - report.html: Relatório sumarizado
 - output.xml: Dados em formato XML
 
-🏷️ Tags Organizadas
+## 🏷️ Tags Organizadas
 Categoria       Tags                    Descrição
 
 - Login	        login_sucesso	        Cenários de login válido
