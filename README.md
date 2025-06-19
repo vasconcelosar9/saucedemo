@@ -72,12 +72,12 @@ robot tests/
 ```
 
 ### Executar testes específicos:
-#### Testes de login
+- Testes de login
 ```bash
 robot tests/login_tests.robot
 ```
 
-#### Testes com tag específica
+- Testes com tag específica
 ```bash
 robot --include login_sucesso tests/
 ```
