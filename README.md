@@ -16,13 +16,13 @@ Este projeto implementa testes automatizados para o site [SauceDemo](https://www
 - Campos obrigatórios
 - Usuário bloqueado
 
-### 🛒 Testes de Produtos
+### 🛍️ Testes de Produtos
 - Adição/remoção de produtos no carrinho
 - Ordenação de produtos (A-Z, Z-A)
 - Ordenação por preço (crescente/decrescente)
 - Adição múltipla de produtos
 
-### 🛍️ Testes de Carrinho
+### 🛒 Testes de Carrinho
 - Visualização de itens
 - Remoção de itens individuais
 - Remoção de todos os itens
