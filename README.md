@@ -69,11 +69,11 @@ O arquivo base.resource contém as configurações principais:
 - Execute todos os testes:
 - robot tests/
 
-## Executar testes específicos:
-### Testes de login
+### Executar testes específicos:
+#### Testes de login
 - robot tests/login_tests.robot
 
-### Testes com tag específica
+#### Testes com tag específica
 - robot --include login_sucesso tests/
 
 ## 🔍 Relatórios
@@ -81,13 +81,3 @@ Após a execução, os relatórios estarão disponíveis em:
 - log.html: Log detalhado da execução
 - report.html: Relatório sumarizado
 - output.xml: Dados em formato XML
-
-## 🏷️ Tags Organizadas
-Categoria       Tags                    Descrição
-
-- Login	        login_sucesso	        Cenários de login válido
-                login_falha	            Cenários de login inválido
-- Produtos	    products_list_sucesso	Fluxos positivos de produtos
-- Carrinho	    cart_sucesso	        Fluxos positivos do carrinho
-- Checkout	    checkout_sucesso	    Checkout completo
-                checkout_falha	        Falhas no checkout ou não realizado
