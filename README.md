@@ -1,0 +1,105 @@
+# 🧪 Automação de Testes - SauceDemo
+
+Este projeto implementa testes automatizados para o site [SauceDemo](https://www.saucedemo.com), uma plataforma de e-commerce demo usada para práticas de automação de testes. A suite inclui testes para login, lista de produtos, carrinho de compras e checkout.
+
+## 🧩 Tecnologias Utilizadas
+- **Robot Framework** (Framework de automação)
+- **SeleniumLibrary** (Controle do navegador)
+- **FakerLibrary** (Geração de dados fictícios)
+- **Python** (Linguagem base)
+
+## 📂 Estrutura do Projeto
+
+saucedemo/
+├── resources/
+│ └── base.resource # Keywords e variáveis compartilhadas
+├── tests/
+│ ├── login_tests.robot # Testes de autenticação
+│ ├── products_list_tests.robot # Testes da página de produtos
+│ ├── cart_tests.robot # Testes do carrinho
+│ └── checkout_tests.robot # Testes de checkout
+├── .gitignore # Arquivos ignorados pelo Git
+└── README.md # Este arquivo
+
+## ⚙️ Funcionalidades Testadas
+
+### 🔐 Testes de Login
+- Login com credenciais válidas
+- Tentativas com usuário/senha inválidos
+- Campos obrigatórios
+- Usuário bloqueado
+
+### 🛒 Testes de Produtos
+- Adição/remoção de produtos no carrinho
+- Ordenação de produtos (A-Z, Z-A)
+- Ordenação por preço (crescente/decrescente)
+- Adição múltipla de produtos
+
+### 🛍️ Testes de Carrinho
+- Visualização de itens
+- Remoção de itens individuais
+- Remoção de todos os itens
+- Fluxo "Continuar Comprando"
+- Navegação para checkout
+
+### 💰 Testes de Checkout
+- Finalização com dados válidos
+- Validação de campos obrigatórios
+- Cancelamento em diferentes etapas
+- Fluxo completo de compra
+
+## 🚀 Pré-requisitos
+1. Python 3.10+
+2. Pip (gerenciador de pacotes)
+3. Google Chrome (navegador)
+
+## 🔧 Instalação
+```bash
+# Clonar repositório
+git clone https://github.com/vasconcelosar9/saucedemo.git
+
+# Acessar diretório
+cd saucedemo
+
+# Criar ambiente virtual (opcional)
+python -m venv .venv
+
+# Ativar ambiente virtual (Windows)
+.\.venv\Scripts\activate
+
+# Instalar dependências
+pip install -r requirements.txt
+
+⚙️ Configuração
+O arquivo base.resource contém as configurações principais:
+- URL do site
+- Seletores de elementos
+- Configurações do navegador
+- Keywords compartilhadas
+
+▶️ Executando os Testes
+- Execute todos os testes:
+- robot tests/
+
+Executar testes específicos:
+# Testes de login
+- robot tests/login_tests.robot
+
+# Testes com tag específica
+- robot --include login_sucesso tests/
+
+🔍 Relatórios
+Após a execução, os relatórios estarão disponíveis em:
+- log.html: Log detalhado da execução
+- report.html: Relatório sumarizado
+- output.xml: Dados em formato XML
+
+🏷️ Tags Organizadas
+Categoria       Tags                    Descrição
+
+- Login	        login_sucesso	        Cenários de login válido
+                login_falha	            Cenários de login inválido
+- Produtos	    products_list_sucesso	Fluxos positivos de produtos
+- Carrinho	    cart_sucesso	        Fluxos positivos do carrinho
+- Checkout	    checkout_sucesso	    Checkout completo
+                checkout_falha	        Falhas no checkout ou não realizado
