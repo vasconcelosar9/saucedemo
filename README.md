@@ -35,11 +35,6 @@ Este projeto implementa testes automatizados para o site [SauceDemo](https://www
 - Cancelamento em diferentes etapas
 - Fluxo completo de compra
 
-## 🚀 Pré-requisitos
-1. Python 3.10+
-2. Pip (gerenciador de pacotes)
-3. Google Chrome (navegador)
-
 ## 🔧 Instalação
 ```bash
 # Clonar repositório
@@ -53,9 +48,6 @@ python -m venv .venv
 
 # Ativar ambiente virtual (Windows)
 .\.venv\Scripts\activate
-
-# Instalar dependências
-pip install -r requirements.txt
 ```
 
 ## ⚙️ Configuração
