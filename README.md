@@ -42,12 +42,6 @@ git clone https://github.com/vasconcelosar9/saucedemo.git
 
 # Acessar diretório
 cd saucedemo
-
-# Criar ambiente virtual (opcional)
-python -m venv .venv
-
-# Ativar ambiente virtual (Windows)
-.\.venv\Scripts\activate
 ```
 
 ## ⚙️ Configuração
