@@ -5,7 +5,7 @@ Library    String
 Library    FakerLibrary    locale=pt_BR
 
 *** Variables ***
-${BROWSER}                                 chrome
+${BROWSER}                                 ${BROWSER}
 ${URL}                                     https://www.saucedemo.com
 ${IS_HEADLESS}                             True
 ${CAMPO_USUARIO}                           id=user-name
