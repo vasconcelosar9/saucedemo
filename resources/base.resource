@@ -3,7 +3,6 @@ Library    SeleniumLibrary
 Library    Collections
 Library    String
 Library    FakerLibrary    locale=pt_BR
-Library    Screenshot
 
 *** Variables ***
 ${BROWSER}                                 chrome
