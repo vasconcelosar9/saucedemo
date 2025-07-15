@@ -7,6 +7,7 @@ Library    FakerLibrary    locale=pt_BR
 *** Variables ***
 ${BROWSER}                                 chrome
 ${URL}                                     https://www.saucedemo.com
+${IS_HEADLESS}                             True
 ${CAMPO_USUARIO}                           id=user-name
 ${CAMPO_SENHA}                             id=password
 ${BOTAO_LOGIN}                             id=login-button
@@ -33,10 +34,11 @@ ${BOTAO_CANCEL_CHECKOUT}                   id=cancel
 *** Keywords ***
 Acessar página
     ${chrome_options}    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
-    ${prefs}    Evaluate    {'profile.password_manager_leak_detection': False}
-    Call Method    ${chrome_options}    add_experimental_option
-    ...    prefs    ${prefs}
-    Open Browser    ${URL}    ${BROWSER}    options=${chrome_options}
+    ${prefs}             Evaluate    {'profile.password_manager_leak_detection': False}
+    Call Method          ${chrome_options}    add_experimental_option    prefs    ${prefs}
+    Run Keyword If       ${IS_HEADLESS} == True
+    ...                  Call Method    ${chrome_options}    add_argument    --headless
+    Open Browser         ${URL}    ${BROWSER}    options=${chrome_options}
     Maximize Browser Window
     Title Should Be    Swag Labs
 
