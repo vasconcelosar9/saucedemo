@@ -35,6 +35,6 @@ jobs:
       run: robot -d ./logs tests
     - name: Robot reporter
       uses: joonvena/robotframework-reporter-action@v2.4
-        with:
-          gh_access_token: ${{ secrets.GITHUB_TOKEN }}
-          report_path: logs
+      with:
+        gh_access_token: ${{ secrets.GITHUB_TOKEN }}
+        report_path: logs
