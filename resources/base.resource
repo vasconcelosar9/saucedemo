@@ -5,8 +5,8 @@ Library    String
 Library    FakerLibrary    locale=pt_BR
 
 *** Variables ***
-${BROWSER}                                 ${BROWSER}
 ${URL}                                     https://www.saucedemo.com
+${BROWSER}                                 chrome
 ${IS_HEADLESS}                             True
 ${CAMPO_USUARIO}                           id=user-name
 ${CAMPO_SENHA}                             id=password
@@ -33,14 +33,25 @@ ${BOTAO_CANCEL_CHECKOUT}                   id=cancel
 
 *** Keywords ***
 Acessar página
-    ${chrome_options}    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
-    ${prefs}             Evaluate    {'profile.password_manager_leak_detection': False}
-    Call Method          ${chrome_options}    add_experimental_option    prefs    ${prefs}
-    Run Keyword If       ${IS_HEADLESS} == True
-    ...                  Call Method    ${chrome_options}    add_argument    --headless
-    Open Browser         ${URL}    ${BROWSER}    options=${chrome_options}
+    Run Keyword If       ${BROWSER} == chrome     Criar opções chrome
+    Run Keyword If       ${BROWSER} == firefox    Criar opções firefox
+    Open Browser         ${URL}    ${BROWSER}    options=${options}
     Maximize Browser Window
     Title Should Be    Swag Labs
+
+Criar opções chrome
+    ${options}            Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
+    ${prefs}              Evaluate    {'profile.password_manager_leak_detection': False}
+    Call Method           ${options}    add_experimental_option    prefs    ${prefs}
+    Run Keyword If        ${IS_HEADLESS} == True
+    ...    Call Method    ${options}    add_argument    --headless
+    Set Suite Variable    ${options}
+
+Criar opções firefox
+    ${options}            Evaluate    sys.modules['selenium.webdriver'].FirefoxOptions()    sys
+    Run Keyword if        ${IS_HEADLESS} == True
+    ...    Call Method    ${options}    add_argument    -headless
+    Set Suite Variable    ${options}
 
 Fechar navegador
     Capture Page Screenshot
