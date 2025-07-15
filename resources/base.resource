@@ -3,6 +3,7 @@ Library    SeleniumLibrary
 Library    Collections
 Library    String
 Library    FakerLibrary    locale=pt_BR
+Library    Screenshot
 
 *** Variables ***
 ${BROWSER}                                 chrome
@@ -43,6 +44,7 @@ Acessar página
     Title Should Be    Swag Labs
 
 Fechar navegador
+    Capture Page Screenshot
     Close Browser
 
 Verificar URL
