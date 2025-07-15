@@ -6,7 +6,7 @@ Library    FakerLibrary    locale=pt_BR
 
 *** Variables ***
 ${URL}                                     https://www.saucedemo.com
-${BROWSER}                                 chrome
+${BROWSER}                                 firefox
 ${IS_HEADLESS}                             True
 ${CAMPO_USUARIO}                           id=user-name
 ${CAMPO_SENHA}                             id=password
@@ -33,8 +33,8 @@ ${BOTAO_CANCEL_CHECKOUT}                   id=cancel
 
 *** Keywords ***
 Acessar página
-    Run Keyword If       ${BROWSER} == chrome     Criar opções chrome
-    Run Keyword If       ${BROWSER} == firefox    Criar opções firefox
+    Run Keyword If       '${BROWSER}' == 'chrome'     Criar opções chrome
+    Run Keyword If       '${BROWSER}' == 'firefox'    Criar opções firefox
     Open Browser         ${URL}    ${BROWSER}    options=${options}
     Maximize Browser Window
     Title Should Be    Swag Labs

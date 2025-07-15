@@ -11,7 +11,7 @@ atest/results
 utest/jasmine-results
 .idea
 .vscode
-.png
+*.png
 .*project
 *.pyc
 *$py.class
