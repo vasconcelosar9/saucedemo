@@ -60,7 +60,7 @@ robot tests/
 ### Executar testes específicos:
 - Testes de login
 ```bash
-robot tests/login_tests.robot
+robot tests/login.robot
 ```
 
 - Testes com tag específica
