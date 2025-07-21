@@ -12,6 +12,7 @@ utest/jasmine-results
 .idea
 .vscode
 *.png
+*.log
 .*project
 *.pyc
 *$py.class
